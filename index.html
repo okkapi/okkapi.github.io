@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>椎名澪 | 業務自動化・API連携の開発</title>
+<meta name="description" content="Python / Google Apps Script による業務自動化とAPI連携の開発。Claude API を組み込んだ運用システムの構築、定期実行の設計、WordPress の運用自動化を行っています。">
+<style>
+:root{
+  --ink:#1a1d21;
+  --sub:#5b636e;
+  --line:#e3e6ea;
+  --bg:#ffffff;
+  --soft:#f6f8fa;
+  --accent:#1f6feb;
+  --ok:#1a7f37;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.85;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px}
+a{color:var(--accent)}
+
+/* header */
+header{border-bottom:1px solid var(--line);padding:72px 0 56px;background:var(--soft)}
+.role{font-size:13px;letter-spacing:.14em;color:var(--sub);margin:0 0 14px}
+h1{font-size:30px;margin:0 0 18px;letter-spacing:.01em;line-height:1.5}
+.lead{font-size:17px;color:var(--sub);margin:0;max-width:640px}
+
+/* sections */
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+h2{font-size:20px;margin:0 0 8px;letter-spacing:.01em}
+.note{font-size:14px;color:var(--sub);margin:0 0 28px}
+
+/* service cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:10px;padding:20px 22px}
+.card h3{font-size:15px;margin:0 0 8px}
+.card p{font-size:14px;color:var(--sub);margin:0}
+
+/* work */
+.work{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:26px 28px;margin-bottom:22px}
+.work h3{font-size:17px;margin:0 0 6px}
+.tag{display:inline-block;font-size:12px;padding:3px 10px;border-radius:999px;background:#eaf5ec;color:var(--ok);margin-left:8px;vertical-align:middle;font-weight:600}
+.work p{font-size:15px;margin:0 0 18px}
+dl{display:grid;grid-template-columns:120px 1fr;gap:8px 18px;margin:0 0 18px;font-size:14px}
+dt{color:var(--sub)}
+dd{margin:0}
+.flow{font-size:13.5px;background:var(--soft);border-radius:8px;padding:16px 20px;color:var(--sub);margin:0 0 18px;line-height:2}
+.points{margin:0;padding-left:1.1em;font-size:14.5px}
+.points li{margin-bottom:10px}
+.points strong{font-weight:600}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--sub);font-weight:600;white-space:nowrap;width:210px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:var(--soft);padding:2px 6px;border-radius:4px}
+
+/* stack */
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.stack li{font-size:13.5px;border:1px solid var(--line);border-radius:6px;padding:6px 12px;color:var(--sub)}
+
+footer{padding:48px 0 72px;font-size:14px;color:var(--sub)}
+footer a{text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:600px){
+  header{padding:52px 0 40px}
+  h1{font-size:23px}
+  dl{grid-template-columns:1fr;gap:2px 0}
+  dt{margin-top:10px}
+  th{width:auto;white-space:normal}
+  table,thead,tbody,th,td,tr{display:block}
+  th{border-bottom:none;padding-bottom:0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="role">業務自動化 / API連携</p>
+    <h1>APIとAIを組み込んだ<br>業務自動化システムをつくります</h1>
+    <p class="lead">
+      椎名澪です。Python と Google Apps Script を使って、手作業で繰り返している業務を
+      自動で回る仕組みに置き換える開発をしています。
+      外部APIの連携、AIの組み込み、サーバーでの定期実行まで一貫して構築します。
+    </p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>ご相談いただける内容</h2>
+    <p class="note">「毎回この作業を手でやっている」という状態を、動く仕組みに変えるところが専門です。</p>
+    <div class="grid">
+      <div class="card">
+        <h3>スプレッドシート × AI</h3>
+        <p>Google スプレッドシートの内容をAIに処理させ、要約・分類・下書き生成などを自動化します。ボタン一つで動く形にします。</p>
+      </div>
+      <div class="card">
+        <h3>API連携・データ収集</h3>
+        <p>複数のサービスをAPIでつなぎ、データの取得・加工・転記を自動化します。OAuth認証を伴うものにも対応します。</p>
+      </div>
+      <div class="card">
+        <h3>定期実行の仕組みづくり</h3>
+        <p>cron やトリガーによる無人実行の設計。認証の期限切れやエラー時の挙動まで含めて組みます。</p>
+      </div>
+      <div class="card">
+        <h3>WordPress の運用自動化</h3>
+        <p>REST API を使った投稿・更新の自動化。テーマの制約はプラグインを自作して回避します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>制作実績</h2>
+    <p class="note">自社メディアの運用のために設計・実装し、実際に運用しているシステムです。ソースコードは全文公開しています。</p>
+
+    <div class="work">
+      <h3>検索データの週次レポート自動生成システム<span class="tag">稼働中</span></h3>
+      <p>
+        Google Search Console のデータを毎週自動で取得し、
+        「どの記事を直せば成果が出るか」「まだ書いていない需要はどこか」を
+        判断できる形にまとめて出力するシステムです。
+      </p>
+
+      <dl>
+        <dt>稼働期間</dt><dd>2026年5月 〜 稼働中（13回の定期実行）</dd>
+        <dt>実行タイミング</dt><dd>毎週月曜 8:00（cron による無人実行）</dd>
+        <dt>使用API</dt><dd>Google Search Console API（OAuth 2.0）</dd>
+        <dt>言語</dt><dd>Python 3 / シェルスクリプト</dd>
+      </dl>
+
+      <p class="flow">
+        cron（毎週月曜 8:00）<br>
+        &nbsp;└ 上位クエリの抽出 ／ 前週との順位比較 ／ 改善対象記事の抽出 ／ 新規テーマの候補抽出<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;└ 1つのレポートに統合してファイル出力 ＋ 完了通知
+      </p>
+
+      <ul class="points">
+        <li><strong>3ヶ月以上、止めずに運用しています。</strong>その間にOAuthの認証が2回失効しましたが、その都度検知して復旧させ、稼働を継続しています。納品して終わりではなく、動き続ける状態を保つところまでを含めて経験しています。</li>
+        <li><strong>データを出すだけでなく、判断できる形に変換しています。</strong>「検索順位30〜100位の記事＝あと一押しで1ページ目に届く」「表示はあるがクリックが0のクエリ＝需要はあるのに記事がない領域」といった条件で切り出しています。</li>
+        <li><strong>無人実行で壊れやすい箇所を潰しています。</strong>認証トークンの自動更新、cron 実行時に作業ディレクトリや環境変数が変わる問題への対応など、定期実行を前提とした設計にしています。</li>
+      </ul>
+
+      <p style="margin:0;font-size:14px">
+        ソースコード：<a href="https://github.com/okkapi/gsc-wordpress-automation">github.com/okkapi/gsc-wordpress-automation</a>
+      </p>
+    </div>
+
+    <div class="work">
+      <h3>WordPress 運用ツール群</h3>
+      <p>記事の投稿・更新・インデックス申請を、管理画面を開かずコマンドから実行できるようにしたツール群です。</p>
+      <table>
+        <tr><th>WordPress REST API 連携</th><td>アプリケーションパスワードによる認証で、記事の投稿・更新を自動化</td></tr>
+        <tr><th>Claude API 連携</th><td>既存記事の本文を取得してAIで書き直し、WordPress に反映</td></tr>
+        <tr><th>Google Indexing API</th><td>公開したURLのインデックス申請</td></tr>
+        <tr><th>環境差分の吸収</th><td>開発機（macOS）と本番サーバーでディレクトリ構成が異なる問題に対し、候補パスを順に評価して最初に存在したものを採用する仕組みを実装</td></tr>
+      </table>
+    </div>
+
+    <div class="work">
+      <h3>WordPress プラグインの自作</h3>
+      <p>
+        使用中のテーマのSEO設定項目が REST API から読み書きできず、外部から自動更新できない問題がありました。
+        テーマ本体を改造すると更新時に消えてしまうため、<strong>プラグイン側で解決</strong>しています。
+      </p>
+      <table>
+        <tr><th>実装</th><td><code>register_post_meta()</code> で対象のメタ項目を REST API に公開。<code>auth_callback</code> に編集権限のチェックを設定し、権限のないアクセスを遮断</td></tr>
+        <tr><th>運用</th><td>本番サイトで有効化して使用</td></tr>
+        <tr><th>言語</th><td>PHP</td></tr>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>使用技術</h2>
+    <p class="note">実際に動くものを作った経験のあるものだけを記載しています。</p>
+    <ul class="stack">
+      <li>Python 3</li>
+      <li>Google Apps Script</li>
+      <li>PHP（WordPress プラグイン）</li>
+      <li>Anthropic Claude API</li>
+      <li>Google Search Console API</li>
+      <li>Google Indexing API</li>
+      <li>WordPress REST API</li>
+      <li>OAuth 2.0</li>
+      <li>cron / シェルスクリプト</li>
+      <li>Git / GitHub</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>稼働について</h2>
+    <table>
+      <tr><th>稼働時間</th><td>週30〜35時間</td></tr>
+      <tr><th>働き方</th><td>フルリモート</td></tr>
+      <tr><th>やりとり</th><td>チャット・メールなどテキストでのやりとりを基本としています</td></tr>
+      <tr><th>お受けしていること</th><td>要件のヒアリングから設計・実装・納品後の調整まで</td></tr>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p style="margin:0 0 6px">椎名澪</p>
+    <p style="margin:0"><a href="https://github.com/okkapi">GitHub: @okkapi</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
