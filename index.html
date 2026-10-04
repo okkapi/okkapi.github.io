@@ -113,7 +113,7 @@ footer a:hover{text-decoration:underline}
       </div>
       <div class="card">
         <h3>定期実行の仕組みづくり</h3>
-        <p>cron やトリガーによる無人実行の設計。認証の期限切れやエラー時の挙動まで含めて組みます。</p>
+        <p>cron / launchd / トリガーによる無人実行の設計。認証の期限切れや、止まったことに気づけない問題への対策まで含めて組みます。</p>
       </div>
       <div class="card">
         <h3>WordPress の運用自動化</h3>
@@ -137,22 +137,22 @@ footer a:hover{text-decoration:underline}
       </p>
 
       <dl>
-        <dt>稼働期間</dt><dd>2026年5月 〜 稼働中（13回の定期実行）</dd>
-        <dt>実行タイミング</dt><dd>毎週月曜 8:00（cron による無人実行）</dd>
+        <dt>稼働期間</dt><dd>2026年5月 〜 稼働中（レポート出力 14回）</dd>
+        <dt>実行タイミング</dt><dd>毎週月曜 8:00（launchd による無人実行）</dd>
         <dt>使用API</dt><dd>Google Search Console API（OAuth 2.0）</dd>
         <dt>言語</dt><dd>Python 3 / シェルスクリプト</dd>
       </dl>
 
       <p class="flow">
-        cron（毎週月曜 8:00）<br>
+        launchd（毎週月曜 8:00・スリープ時は起動後に補完実行）<br>
         &nbsp;└ 上位クエリの抽出 ／ 前週との順位比較 ／ 改善対象記事の抽出 ／ 新規テーマの候補抽出<br>
         &nbsp;&nbsp;&nbsp;&nbsp;└ 1つのレポートに統合してファイル出力 ＋ 完了通知
       </p>
 
       <ul class="points">
-        <li><strong>3ヶ月以上、止めずに運用しています。</strong>その間にOAuthの認証が2回失効しましたが、その都度検知して復旧させ、稼働を継続しています。納品して終わりではなく、動き続ける状態を保つところまでを含めて経験しています。</li>
+        <li><strong>OAuthの認証が2回失効しましたが、その都度検知して復旧させています。</strong>納品して終わりではなく、動き続ける状態を保つところまでを含めて経験しています。</li>
         <li><strong>データを出すだけでなく、判断できる形に変換しています。</strong>「検索順位30〜100位の記事＝あと一押しで1ページ目に届く」「表示はあるがクリックが0のクエリ＝需要はあるのに記事がない領域」といった条件で切り出しています。</li>
-        <li><strong>無人実行で壊れやすい箇所を潰しています。</strong>認証トークンの自動更新、cron 実行時に作業ディレクトリや環境変数が変わる問題への対応など、定期実行を前提とした設計にしています。</li>
+        <li><strong>一度、7週間止めてしまいました。その原因を特定して直しています。</strong>cron で組んでいた当初、月曜8時にMacがスリープしていると実行時刻が破棄され、ログも残らないため停止に気づけませんでした。macOS 標準の launchd に移行し、スリープで取りこぼした実行を起動時に補完する設定と、失敗が必ずログに残る設定を追加して解決しています。<strong>「動かなくなったことに気づけない」状態を作らないことが、定期実行では一番重要だと考えています。</strong></li>
       </ul>
 
       <p style="margin:0;font-size:14px">
@@ -200,7 +200,7 @@ footer a:hover{text-decoration:underline}
       <li>Google Indexing API</li>
       <li>WordPress REST API</li>
       <li>OAuth 2.0</li>
-      <li>cron / シェルスクリプト</li>
+      <li>cron / launchd / シェルスクリプト</li>
       <li>Git / GitHub</li>
     </ul>
   </div>
